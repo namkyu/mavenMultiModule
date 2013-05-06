@@ -6,7 +6,6 @@
   <packaging>pom</packaging>
   <modules>
   	<module>comm</module>
-  	<module>admin</module>
   	<module>user</module>
   </modules>
 </project>
