@@ -8,4 +8,5 @@
 	</parent>
 	<groupId>com.kyu.comm</groupId>
 	<artifactId>comm</artifactId>
+	<version>1.0.0</version>
 </project>

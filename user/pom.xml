@@ -10,4 +10,11 @@
 	<artifactId>user</artifactId>
 	<packaging>war</packaging>
 
+	<dependencies>
+		<dependency>
+			<groupId>com.kyu.comm</groupId>
+			<artifactId>comm</artifactId>
+		</dependency>
+	</dependencies>
+
 </project>
