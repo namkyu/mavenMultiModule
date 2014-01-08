@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.maven</groupId>
 		<artifactId>mavenMultiModule</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0</version>
 	</parent>
 	<groupId>com.kyu.comm</groupId>
 	<artifactId>comm</artifactId>
