@@ -13,7 +13,15 @@
 		<module>comm</module>
 		<module>admin</module>
 		<module>user</module>
+		<module>comm2</module>
 	</modules>
+
+	<!-- =================================================== -->
+	<!-- SCM -->
+	<!-- =================================================== -->
+	<scm>
+		<connection>scm:git:https://github.com/namkyu/mavenMultiModule.git</connection>
+	</scm>
 
 	<!-- =================================================== -->
 	<!-- dependencyManagement -->
@@ -23,7 +31,14 @@
 			<dependency>
 				<groupId>com.kyu.comm</groupId>
 				<artifactId>comm</artifactId>
-				<version>1.0.0</version>
+				<version>1.0</version>
+				<type>jar</type>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.kyu.comm2</groupId>
+				<artifactId>comm2</artifactId>
+				<version>1.0</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
@@ -34,14 +49,57 @@
 	<!-- build -->
 	<!-- =================================================== -->
 	<build>
+
 		<plugins>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<version>1.2</version>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>create</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<doCheck>true</doCheck>
+					<doUpdate>false</doUpdate>
+					<format>{0,number}</format>
+					<items>
+						<item>buildNumber</item>
+					</items>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<execution>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<copy file="${project.basedir}/buildNumber.properties"
+									tofile="${project.build.directory}/${project.artifactId}-${project.version}/buildNumber.jsp" />
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
-					<warName>${artifactId}</warName>
+					<warName>${project.artifactId}-${project.version}-${buildNumber}</warName>
 					<warSourceDirectory>WebContent</warSourceDirectory>
-					<packagingExcludes>WEB-INF/web.xml</packagingExcludes>
 				</configuration>
 			</plugin>
 
@@ -82,6 +140,8 @@
 					<wtpContextName>/</wtpContextName>
 				</configuration>
 			</plugin>
+
+
 		</plugins>
 	</build>
 

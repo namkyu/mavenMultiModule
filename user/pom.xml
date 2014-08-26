@@ -2,8 +2,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>mavenMultiModule</artifactId>
 		<groupId>com.maven</groupId>
+		<artifactId>mavenMultiModule</artifactId>
 		<version>1.0</version>
 	</parent>
 	<groupId>com.maven.user</groupId>
@@ -16,5 +16,54 @@
 			<artifactId>comm</artifactId>
 		</dependency>
 	</dependencies>
+
+	<!-- =================================================== -->
+	<!-- build -->
+	<!-- =================================================== -->
+<!-- 	<build> -->
+<!-- 		<plugins> -->
+
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.codehaus.mojo</groupId> -->
+<!-- 				<artifactId>buildnumber-maven-plugin</artifactId> -->
+<!-- 				<version>1.2</version> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<phase>validate</phase> -->
+<!-- 						<goals> -->
+<!-- 							<goal>create</goal> -->
+<!-- 						</goals> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 				<configuration> -->
+<!-- 					<doCheck>true</doCheck> -->
+<!-- 					<doUpdate>false</doUpdate> -->
+<!-- 					<format>{0,number}</format> -->
+<!-- 					<items> -->
+<!-- 						<item>buildNumber</item> -->
+<!-- 					</items> -->
+<!-- 				</configuration> -->
+<!-- 			</plugin> -->
+
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.apache.maven.plugins</groupId> -->
+<!-- 				<artifactId>maven-antrun-plugin</artifactId> -->
+<!-- 				<version>1.7</version> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<phase>prepare-package</phase> -->
+<!-- 						<configuration> -->
+<!-- 							<target> -->
+<!-- 								<copy file="${project.basedir}/buildNumber.properties" tofile="${project.basedir}/buildNumber.jsp" /> -->
+<!-- 							</target> -->
+<!-- 						</configuration> -->
+<!-- 						<goals> -->
+<!-- 							<goal>run</goal> -->
+<!-- 						</goals> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 			</plugin> -->
+<!-- 		</plugins> -->
+<!-- 	</build> -->
 
 </project>
