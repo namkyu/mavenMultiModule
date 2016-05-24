@@ -11,8 +11,8 @@
 	<!-- =================================================== -->
 	<modules>
 		<module>comm</module>
-		<module>admin</module>
 		<module>user</module>
+		<module>admin</module>
 		<module>comm2</module>
 	</modules>
 
@@ -50,6 +50,14 @@
 	<!-- =================================================== -->
 	<build>
 
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+        		<filtering>true</filtering>
+			</resource>
+
+		</resources>
+
 		<plugins>
 
 			<plugin>
@@ -86,8 +94,7 @@
 						</goals>
 						<configuration>
 							<target>
-								<copy file="${project.basedir}/buildNumber.properties"
-									tofile="${project.build.directory}/${project.artifactId}-${project.version}/buildNumber.jsp" />
+								<copy file="${project.basedir}/buildNumber.properties" tofile="${project.build.directory}/${project.artifactId}-${project.version}/buildNumber.jsp" />
 							</target>
 						</configuration>
 					</execution>
@@ -100,6 +107,7 @@
 				<configuration>
 					<warName>${project.artifactId}-${project.version}-${buildNumber}</warName>
 					<warSourceDirectory>WebContent</warSourceDirectory>
+					<packagingExcludes>WEB-INF/web.xml</packagingExcludes>
 				</configuration>
 			</plugin>
 
@@ -141,8 +149,32 @@
 				</configuration>
 			</plugin>
 
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<systemProperties>
+						<JAVA_OPTS>-Xms128m -Xmx256m -XX:MaxPermSize=128m</JAVA_OPTS>
+					</systemProperties>
+					<port>9090</port>
+					<path>/</path>
+					<warSourceDirectory>WebContent</warSourceDirectory>
+				</configuration>
+			</plugin>
 
 		</plugins>
 	</build>
+
+	<profiles>
+
+		<profile>
+			<id>rc2</id>
+			<properties>
+				<api.ip>localhost</api.ip>
+			</properties>
+		</profile>
+
+	</profiles>
 
 </project>
