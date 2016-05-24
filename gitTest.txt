@@ -1,3 +1,0 @@
-hook test
-retry test
-test
